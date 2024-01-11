@@ -1,0 +1,30 @@
+.clock-container {
+  background-color: #1d1d1d;
+  border-radius: 2%;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.bubbly-button {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+#clock-time {
+  // display: block;
+  // margin-top: 4rem;
+  padding-top: 0.5rem;
+  font-weight: 700;
+  font-size: 100px;
+
+}
+
+// adjust the size of the clock for high resolution displays
+@media only screen and (min-width: 940px) {
+  .clock-container {
+    // width: 100%;
+    // height: 100%;
+    margin-right: 40vh;
+    margin-left: 40vh;
+  }
+}
