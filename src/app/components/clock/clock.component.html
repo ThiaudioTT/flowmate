@@ -19,6 +19,10 @@
       type="button"
       (click)="this.stopTimer()" >Pause</button>
 
+    <button *ngIf="!isClockRunning && seconds" type="button" class="bubbly-button" (click)="this.startRest()">
+      Rest
+    </button>
+
   </div>
 
 </div>

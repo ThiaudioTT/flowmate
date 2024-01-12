@@ -9,14 +9,15 @@ export class ClockComponent {
   timerDisplay = '00:00';
   seconds = 0;
   isClockRunning = false;
-  intervalId: any;
+  timerId: any;
+  restTimeId: any;
 
 
   /**
    * Start the timer
    */
   startTimer() {
-    this.intervalId = setInterval(() => {
+    this.timerId = setInterval(() => {
       this.seconds++;
       this.timerDisplay = this.formatTime(this.seconds);
     }, 1000);
@@ -25,7 +26,7 @@ export class ClockComponent {
   }
 
   stopTimer(): void {
-    clearInterval(this.intervalId);
+    clearInterval(this.timerId);
     this.isClockRunning = false;
   }
 
@@ -45,6 +46,24 @@ export class ClockComponent {
     }
 
     return `${formatString(minutes)}:${formatString(sec)}`;
+  }
+
+
+  calcRestTime(): string {
+    const restTime = this.seconds / 3;
+    return this.formatTime(restTime);
+  }
+
+  // Start the rest time, auto stop when the rest time is over
+  startRest(): void {
+    this.stopTimer();
+
+    this.restTimeId = setInterval(() => {
+      this.seconds--;
+      this.timerDisplay = this.formatTime(this.seconds);
+
+      if(this.seconds === 0) clearInterval(this.restTimeId);
+    }, 1000);
   }
 
 }
