@@ -2,12 +2,23 @@
 
   <div class="time-container">
     <div id="clock-time">
-      00:00
+      {{ timerDisplay }}
     </div>
   </div>
 
   <div class="buttons-container">
-    <button class="bubbly-button">Start</button>
+    <button
+    *ngIf="!isClockRunning()"
+      class="bubbly-button"
+      type="button"
+      (click)="this.startTimer()" >Start</button>
+
+    <!-- <button
+    *ngIf="isClockRunning()"
+      class="bubbly-button"
+      type="button"
+      (click)="this.stopTimer()" >Stop</button> -->
+
   </div>
 
 </div>
