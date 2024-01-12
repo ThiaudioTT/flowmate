@@ -8,16 +8,16 @@
 
   <div class="buttons-container">
     <button
-    *ngIf="!isClockRunning()"
+    *ngIf="!isClockRunning"
       class="bubbly-button"
       type="button"
       (click)="this.startTimer()" >Start</button>
 
-    <!-- <button
-    *ngIf="isClockRunning()"
+    <button
+    *ngIf="isClockRunning"
       class="bubbly-button"
       type="button"
-      (click)="this.stopTimer()" >Stop</button> -->
+      (click)="this.stopTimer()" >Pause</button>
 
   </div>
 

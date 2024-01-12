@@ -8,16 +8,25 @@ import { Component } from '@angular/core';
 export class ClockComponent {
   timerDisplay = '00:00';
   seconds = 0;
+  isClockRunning = false;
+  intervalId: any;
 
 
   /**
    * Start the timer
    */
   startTimer() {
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.seconds++;
       this.timerDisplay = this.formatTime(this.seconds);
     }, 1000);
+
+    this.isClockRunning = true;
+  }
+
+  stopTimer(): void {
+    clearInterval(this.intervalId);
+    this.isClockRunning = false;
   }
 
 
@@ -38,12 +47,4 @@ export class ClockComponent {
     return `${formatString(minutes)}:${formatString(sec)}`;
   }
 
-
-  /**
-   * Helper function to check if the clock is running
-   * @returns boolean
-   */
-  isClockRunning() {
-    return this.seconds > 0;
-  }
 }
