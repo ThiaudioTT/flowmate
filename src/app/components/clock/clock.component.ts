@@ -49,14 +49,17 @@ export class ClockComponent {
   }
 
 
-  calcRestTime(): string {
-    const restTime = this.seconds / 3;
-    return this.formatTime(restTime);
+  calcRestTime(): number {
+    const restTime = Math.floor(this.seconds / 3);
+    console.info('restTime', restTime)
+    return restTime < 0 ? 0 : restTime;
   }
 
   // Start the rest time, auto stop when the rest time is over
   startRest(): void {
     this.stopTimer();
+
+    this.seconds = this.calcRestTime() + 1;
 
     this.restTimeId = setInterval(() => {
       this.seconds--;
