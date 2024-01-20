@@ -8,7 +8,7 @@
 
   <div class="buttons-container">
     <button
-    *ngIf="!isClockRunning"
+    *ngIf="!isClockRunning && !isRestTime"
       class="bubbly-button"
       type="button"
       (click)="this.startTimer()" >Start</button>
@@ -20,7 +20,7 @@
       (click)="this.stopTimer()" >Pause</button>
 
     <button *ngIf="!isClockRunning && seconds" type="button" class="bubbly-button" (click)="this.startRest()">
-      Rest
+      {{ isRestTime ? 'Resting...' : 'Rest' }}
     </button>
 
   </div>

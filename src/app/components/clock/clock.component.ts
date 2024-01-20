@@ -11,6 +11,7 @@ export class ClockComponent {
   isClockRunning = false;
   timerId: any;
   restTimeId: any;
+  isRestTime: boolean = false;
 
 
   /**
@@ -51,13 +52,14 @@ export class ClockComponent {
 
   calcRestTime(): number {
     const restTime = Math.floor(this.seconds / 3);
-    console.info('restTime', restTime)
     return restTime < 0 ? 0 : restTime;
   }
 
   // Start the rest time, auto stop when the rest time is over
   startRest(): void {
+    if(this.restTimeId || this.isRestTime) return; // if the rest time is already running, do nothing
     this.stopTimer();
+    this.isRestTime = true;
 
     this.seconds = this.calcRestTime() + 1;
 
@@ -65,7 +67,11 @@ export class ClockComponent {
       this.seconds--;
       this.timerDisplay = this.formatTime(this.seconds);
 
-      if(this.seconds === 0) clearInterval(this.restTimeId);
+      if(this.seconds <= 0) {
+        clearInterval(this.restTimeId);
+        this.restTimeId = null;
+        this.isRestTime = false;
+      }
     }, 1000);
   }
 
